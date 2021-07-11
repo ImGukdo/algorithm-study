@@ -7,7 +7,7 @@
 def solution(prices):
     answer = []
     for i in range(0, len(prices)) :  # 가격을 하나씩 탐색하기 위해 반복문 실행
-        iCount = 0  # 하나의 가격의 유지된 초를 기록
+        iCount = 0  # 하나의 가격이 유지된 초를 기록
         for j in range(i + 1, len(prices)) :  # 현재 위치 이후의 가격과 비교를 위해 반복문 실행
             if prices[i] <= prices[j] :  # 가격이 떨어지지 않았으면
                 iCount += 1  # 1초 증가 후 반복
