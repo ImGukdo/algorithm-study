@@ -1,67 +1,66 @@
 // https://programmers.co.kr/learn/courses/30/lessons/42839
-// ÇÁ·Î±×·¡¸Ó½º ¼Ò¼öÃ£±â ¹®Á¦ 
-// ÇÑÀÚ¸® ¼ýÀÚ°¡ ÀûÈù Á¾ÀÌ Á¶°¢ÀÌ Èð¾îÁ®ÀÖ½À´Ï´Ù. 
-// Èð¾îÁø Á¾ÀÌ Á¶°¢À» ºÙ¿© ¼Ò¼ö¸¦ ¸î °³ ¸¸µé ¼ö ÀÖ´ÂÁö ¾Ë¾Æ³»·Á ÇÕ´Ï´Ù.
-// °¢ Á¾ÀÌ Á¶°¢¿¡ ÀûÈù ¼ýÀÚ°¡ ÀûÈù ¹®ÀÚ¿­ numbers°¡ ÁÖ¾îÁ³À» ¶§, 
-// Á¾ÀÌ Á¶°¢À¸·Î ¸¸µé ¼ö ÀÖ´Â ¼Ò¼ö°¡ ¸î °³ÀÎÁö return ÇÏµµ·Ï solution ÇÔ¼ö¸¦ ¿Ï¼ºÇØÁÖ¼¼¿ä.
+// í”„ë¡œê·¸ëž˜ë¨¸ìŠ¤ ì†Œìˆ˜ì°¾ê¸° ë¬¸ì œ 
+// í•œìžë¦¬ ìˆ«ìžê°€ ì ížŒ ì¢…ì´ ì¡°ê°ì´ í©ì–´ì ¸ìžˆìŠµë‹ˆë‹¤. 
+// í©ì–´ì§„ ì¢…ì´ ì¡°ê°ì„ ë¶™ì—¬ ì†Œìˆ˜ë¥¼ ëª‡ ê°œ ë§Œë“¤ ìˆ˜ ìžˆëŠ”ì§€ ì•Œì•„ë‚´ë ¤ í•©ë‹ˆë‹¤.
+// ê° ì¢…ì´ ì¡°ê°ì— ì ížŒ ìˆ«ìžê°€ ì ížŒ ë¬¸ìžì—´ numbersê°€ ì£¼ì–´ì¡Œì„ ë•Œ, 
+// ì¢…ì´ ì¡°ê°ìœ¼ë¡œ ë§Œë“¤ ìˆ˜ ìžˆëŠ” ì†Œìˆ˜ê°€ ëª‡ ê°œì¸ì§€ return í•˜ë„ë¡ solution í•¨ìˆ˜ë¥¼ ì™„ì„±í•´ì£¼ì„¸ìš”.
 
 #include <string>
 #include <vector>
 
 using namespace std;
-int iCount;  // ¼Ò¼ö°¹¼ö ÀúÀå 
-vector<int> vec;  // ³»°¡ °¡Áö°í ÀÖ´Â ¼ýÀÚµé 
-bool bCheck[10];  // Å½»öÇÑ ÀÎµ¦½ºÀÎÁö Ã¼Å© 
-vector<int> rem;  // Á¶ÇÕÇØ¼­ ¸¸µç ¼ýÀÚµéÀ» ÀúÀå 
+int iCount;  // ì†Œìˆ˜ê°¯ìˆ˜ ì €ìž¥ 
+vector<int> vec;  // ë‚´ê°€ ê°€ì§€ê³  ìžˆëŠ” ìˆ«ìžë“¤ 
+bool bCheck[10];  // íƒìƒ‰í•œ ì¸ë±ìŠ¤ì¸ì§€ ì²´í¬ 
+vector<int> rem;  // ì¡°í•©í•´ì„œ ë§Œë“  ìˆ«ìžë“¤ì„ ì €ìž¥ 
 
-// ¼Ò¼öÀÎÁö ¾Æ´ÑÁö ÆÇº°ÇÏ´Â ÇÔ¼ö, ¼ýÀÚ¸¦ ÇÏ³ª¾¿ ´Ã·Á°¡¸ç ÆÇº°ÇÏ±â À§ÇØ Àç±ÍÇÔ¼ö·Î ±¸Çö 
-void Dfs(int iNum, int place, int index){  // ¸Å°³º¯¼ö : Á¶ÇÕÇØ¼­ ÀÔ·Â¹ÞÀº ¼ö, ¸î°³ÀÇ ¼öÀÇ Á¶ÇÕÀÎÁö °¹¼ö, Á¶ÇÕÇÑ ÀÎµ¦½º 
-    bCheck[index] = true;  // Á¶ÇÕµÈ ÀÎµ¦½º¸¦ Ã¼Å© 
-    rem.push_back(iNum);  // Á¶ÇÕµÈ ¼ýÀÚ ÀúÀå 
-    ++iCount;  // ÀÏ´Ü ¼Ò¼ö¶ó°í °¡Á¤ÇÏ°í ¼Ò½º Áß°¡ 
-    for(int i = 2; i * i <= iNum; ++i){  // ¼Ò¼öÀÎÁö ÆÇº°, Á¶ÇÕµÈ ¼ýÀÚÀÇ Á¦°ö±Ù±îÁö¸¸ ¹Ýº¹ÇÏ¿© ¹Ýº¹À» ÁÙÀÓ 
-        if(iNum % i == 0){  // ¼Ò¼ö¶ó¸é 
-            --iCount;  // ¼Ò¼ö °¨¼Ò 
-            break;  // ¹Ýº¹¹® Å»Ãâ 
+// ì†Œìˆ˜ì¸ì§€ ì•„ë‹Œì§€ íŒë³„í•˜ëŠ” í•¨ìˆ˜, ìˆ«ìžë¥¼ í•˜ë‚˜ì”© ëŠ˜ë ¤ê°€ë©° íŒë³„í•˜ê¸° ìœ„í•´ ìž¬ê·€í•¨ìˆ˜ë¡œ êµ¬í˜„ 
+void Dfs(int iNum, int place, int index){  // ë§¤ê°œë³€ìˆ˜ : ì¡°í•©í•´ì„œ ìž…ë ¥ë°›ì€ ìˆ˜, ëª‡ê°œì˜ ìˆ˜ì˜ ì¡°í•©ì¸ì§€ ê°¯ìˆ˜, ì¡°í•©í•œ ì¸ë±ìŠ¤ 
+    bCheck[index] = true;  // ì¡°í•©í•œ ì¸ë±ìŠ¤ë¥¼ ì²´í¬ 
+    rem.push_back(iNum);  // ì¡°í•©ëœ ìˆ«ìž ì €ìž¥ 
+    ++iCount;  // ì¼ë‹¨ ì†Œìˆ˜ë¼ê³  ê°€ì •í•˜ê³  ì†Œìˆ˜ ì¦ê°€ 
+    for(int i = 2; i * i <= iNum; ++i){  // ì†Œìˆ˜ì¸ì§€ íŒë³„, ì¡°í•©ëœ ìˆ«ìžì˜ ì œê³±ê·¼ê¹Œì§€ë§Œ ë°˜ë³µí•˜ì—¬ ë°˜ë³µì„ ì¤„ìž„ 
+        if(iNum % i == 0){  // ì†Œìˆ˜ë¼ë©´ 
+            --iCount;  // ì†Œìˆ˜ ê°ì†Œ 
+            break;  // ë°˜ë³µë¬¸ íƒˆì¶œ 
         }
     }
-    if(place == vec.size() - 1)  // °¡Áö°í ÀÖ´Â ¼ýÀÚ ±æÀÌ¸¸Å­ ÀüºÎ Á¶ÇÕÇßÀ¸¸é 
-        return;  // ¸®ÅÏ 
+    if(place == vec.size() - 1)  // ê°€ì§€ê³  ìžˆëŠ” ìˆ«ìž ê¸¸ì´ë§Œí¼ ì „ë¶€ ì¡°í•©í–ˆìœ¼ë©´ 
+        return;  // ë¦¬í„´ 
     
-    for(int i = 0; i < vec.size(); ++i){  // ³»°¡ °¡Áø ¼ýÀÚµéÀ» Å½»öÇÏ¸é¼­ 
-        bool flag = false;  // ÀÌ¹Ì Á¶ÇÕÇØ¼­ ¸¸µç ¼ýÀÚÀÎÁö Ã¼Å© 
-        for(int j = 0; j < rem.size(); ++j){  // Á¶ÇÕÇÑ ¼ýÀÚµéÀ» Å½»ö 
-            if(rem[j] == iNum * 10 + vec[i]){  // ÀÌ¹Ì Á¶ÇÕµÈ ¼ýÀÚ¸é 
-                flag = true;  // Ã¼Å© 
+    for(int i = 0; i < vec.size(); ++i){  // ë‚´ê°€ ê°€ì§„ ìˆ«ìžë“¤ì„ íƒìƒ‰í•˜ë©´ì„œ 
+        bool flag = false;  // ì´ë¯¸ ì¡°í•©í•´ì„œ ë§Œë“  ìˆ«ìžì¸ì§€ ì²´í¬ 
+        for(int j = 0; j < rem.size(); ++j){  // ì¡°í•©í•œ ìˆ«ìžë“¤ì„ íƒìƒ‰ 
+            if(rem[j] == iNum * 10 + vec[i]){  // ì´ë¯¸ ì¡°í•©ëœ ìˆ«ìžë©´ 
+                flag = true;  // ì²´í¬ 
                 break;
             }
         }
-        if(!bCheck[i] && !flag){  // ³»°¡ °¡Áø ¼ýÀÚÀÇ Å½»öÇÑ ÀÎµ¦½º°¡ ¾Æ´Ï°í ÀÌ¹Ì Á¶ÇÕµÈ ¼ýÀÚµµ ¾Æ´Ï¸é 
-            int a = iNum;  // ÇöÀç Á¶ÇÕµÈ ¼ýÀÚ ÀúÀå 
-            Dfs(iNum * 10 + vec[i], place + 1, i);  // »õ·Î Á¶ÇÕÇÑ ¼ýÀÚ, Á¶ÇÕµÈ ¼ýÀÚ °¹¼ö, ÀÎµ¦½º·Î Àç±ÍÇÔ¼ö ½ÇÇà 
-            bCheck[i] = false;  // Àç±ÍÇÔ¼ö°¡ Á¾·áµÇ¼­ µ¹¾Æ¿À¸é ¼öÇàÇÑ ÀÎµ¦½º¸¦ ´Ù½Ã Å½»ö¾ÈÇÑ°ÍÀ¸·Î Ã¼Å© 
-            iNum = a;  // »õ·Î Á¶ÇÔµÈ ¼ö ÀÌÀüÀ¸·Î º¯°æ 
+        if(!bCheck[i] && !flag){  // ë‚´ê°€ ê°€ì§„ ìˆ«ìžì˜ íƒìƒ‰í•œ ì¸ë±ìŠ¤ê°€ ì•„ë‹ˆê³  ì´ë¯¸ ì¡°í•©ëœ ìˆ«ìžë„ ì•„ë‹ˆë©´ 
+            int a = iNum;  // í˜„ìž¬ ì¡°í•©ëœ ìˆ«ìž ì €ìž¥ 
+            Dfs(iNum * 10 + vec[i], place + 1, i);  // ìƒˆë¡œ ì¡°í•©í•œ ìˆ«ìž, ì¡°í•©ëœ ìˆ«ìž ê°¯ìˆ˜, ì¸ë±ìŠ¤ë¡œ ìž¬ê·€í•¨ìˆ˜ ì‹¤í–‰ 
+            bCheck[i] = false;  // ìž¬ê·€í•¨ìˆ˜ê°€ ì¢…ë£Œë˜ì„œ ëŒì•„ì˜¤ë©´ ìˆ˜í–‰í•œ ì¸ë±ìŠ¤ë¥¼ ë‹¤ì‹œ íƒìƒ‰ì•ˆí•œ ê²ƒìœ¼ë¡œ ì²´í¬ 
+            iNum = a;  // ìƒˆë¡œ ì¡°í•¨ëœ ìˆ˜ ì´ì „ìœ¼ë¡œ ë³€ê²½ 
         }
     }
 }
 
-
 int solution(string numbers) {
     int answer = 0;
-    bool bnum[10];  // Áßº¹µÈ ¼ýÀÚ°¡ ÀÖ´ÂÁö Ã¼Å© 
-    fill(bnum, bnum + 10, false);  // ÀüºÎ false·Î ÃÊ±âÈ­ 
-    for(int i = 0; i < numbers.length(); ++i){  // ¹®ÀÚ¿­·Î ¹ÞÀº ¼ýÀÚ¸¦ Á¤¼öÇüÀ¸·Î º¯È¯ÇÏ¿© ÀúÀå 
+    bool bnum[10];  // ì¤‘ë³µëœ ìˆ«ìžê°€ ìžˆëŠ”ì§€ ì²´í¬ 
+    fill(bnum, bnum + 10, false);  // ì „ë¶€ falseë¡œ ì´ˆê¸°í™” 
+    for(int i = 0; i < numbers.length(); ++i){  // ë¬¸ìžì—´ë¡œ ë°›ì€ ìˆ«ìžë¥¼ ì •ìˆ˜í˜•ìœ¼ë¡œ ë³€í™˜í•˜ì—¬ ì €ìž¥ 
         vec.push_back(int(numbers[i]) - 48);
     }
-    for(int i = 0; i < vec.size(); ++i){  // ³»°¡ °¡Áø ¼ýÀÚµéÀ» Å½»ö 
-        fill(bCheck, bCheck + 10, false);  // ´Ù½Ã ÇÑÀÚ¸®¼öºÎÅÍ ¹Ýº¹ÇÏ±â¶§¹®¿¡ Å½»öÇÑ ÀÎµ¦½º°¡ ¾ø´Ù°í ÃÊ±âÈ­  
-        if(vec[i] == 0 || bnum[vec[i]])  // Ã¹¹øÂ° ¼ýÀÚ·Î 0ÀÌ³ª  ÀÌ¹Ì ¼öÇàÇß´ø ¼ýÀÚ¸é ÆÐ½º 
+    for(int i = 0; i < vec.size(); ++i){  // ë‚´ê°€ ê°€ì§„ ìˆ«ìžë“¤ì„ íƒìƒ‰ 
+        fill(bCheck, bCheck + 10, false);  // ë‹¤ì‹œ í•œìžë¦¬ìˆ˜ë¶€í„° ë°˜ë³µí•˜ê¸°ë•Œë¬¸ì— íƒìƒ‰í•œ ì¸ë±ìŠ¤ê°€ ì—†ë‹¤ê³  ì´ˆê¸°í™”  
+        if(vec[i] == 0 || bnum[vec[i]])  // ì²«ë²ˆì§¸ ìˆ«ìžë¡œ 0ì´ë‚˜  ì´ë¯¸ ìˆ˜í–‰í–ˆë˜ ìˆ«ìžë©´ íŒ¨ìŠ¤ 
             continue;
-        if(vec[i] == 1)  // Ã¹¹øÂ° ¼ýÀÚ°¡ 1ÀÌ¸é ¼Ò¼ö°¡ ¾Æ´Ï¹Ç·Î 
-            --iCount;  // ¼ö¼Ò¸¦ °¨¼ÒÇÏ°í ½ÃÀÛ, ¼Ò¼öÆÇº°ÇÔ¼ö¿¡¼­ 1 Áõ°¡½ÃÅ°±â ¶§¹® 
-        bnum[vec[i]] = true;  // Áßº¹ Å½»öÀ» ¹æÁöÇÏ±â À§ÇØ Å½»öÇÑ ¼ýÀÚ¸¦ Ã¼Å© 
-        Dfs(vec[i], 0, i);  // ¼Ò¼öÆÇº°ÇÔ¼ö ½ÇÇà 
+        if(vec[i] == 1)  // ì²«ë²ˆì§¸ ìˆ«ìžê°€ 1ì´ë©´ ì†Œìˆ˜ê°€ ì•„ë‹ˆë¯€ë¡œ 
+            --iCount;  // ì†Œìˆ˜ë¥¼ ê°ì†Œí•˜ê³  ì‹œìž‘, ì†Œìˆ˜íŒë³„í•¨ìˆ˜ì—ì„œ 1 ì¦ê°€ì‹œí‚¤ê¸° ë•Œë¬¸ 
+        bnum[vec[i]] = true;  // ì¤‘ë³µ íƒìƒ‰ì„ ë°©ì§€í•˜ê¸° ìœ„í•´ íƒìƒ‰í•œ ìˆ«ìžë¥¼ ì²´í¬ 
+        Dfs(vec[i], 0, i);  // ì†Œìˆ˜íŒë³„í•¨ìˆ˜ ì‹¤í–‰ 
     }
-    answer = iCount;  // °è»êµÈ ¼Ò¼ö°¹¼ö¸¦ Á¤´ä¿¡ ³Ö¾îÁØ´Ù. 
+    answer = iCount;  // ê³„ì‚°ëœ ì†Œìˆ˜ê°¯ìˆ˜ë¥¼ ì •ë‹µì— ë„£ì–´ì¤€ë‹¤. 
     return answer;
 }
