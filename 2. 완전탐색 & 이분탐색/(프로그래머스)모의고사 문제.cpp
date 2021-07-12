@@ -1,11 +1,13 @@
-// ¼öÆ÷ÀÚ´Â ¼öÇÐÀ» Æ÷±âÇÑ »ç¶÷ÀÇ ÁØ¸»ÀÔ´Ï´Ù. 
-// ¼öÆ÷ÀÚ »ïÀÎ¹æÀº ¸ðÀÇ°í»ç¿¡ ¼öÇÐ ¹®Á¦¸¦ ÀüºÎ ÂïÀ¸·Á ÇÕ´Ï´Ù. 
-// ¼öÆ÷ÀÚ´Â 1¹ø ¹®Á¦ºÎÅÍ ¸¶Áö¸· ¹®Á¦±îÁö ´ÙÀ½°ú °°ÀÌ Âï½À´Ï´Ù.
-// 1¹ø ¼öÆ÷ÀÚ°¡ Âï´Â ¹æ½Ä: 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, ...
-// 2¹ø ¼öÆ÷ÀÚ°¡ Âï´Â ¹æ½Ä: 2, 1, 2, 3, 2, 4, 2, 5, 2, 1, 2, 3, 2, 4, 2, 5, ...
-// 3¹ø ¼öÆ÷ÀÚ°¡ Âï´Â ¹æ½Ä: 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, ...
-// 1¹ø ¹®Á¦ºÎÅÍ ¸¶Áö¸· ¹®Á¦±îÁöÀÇ Á¤´äÀÌ ¼ø¼­´ë·Î µéÀº ¹è¿­ answers°¡ ÁÖ¾îÁ³À» ¶§, 
-// °¡Àå ¸¹Àº ¹®Á¦¸¦ ¸ÂÈù »ç¶÷ÀÌ ´©±¸ÀÎÁö ¹è¿­¿¡ ´ã¾Æ return ÇÏµµ·Ï solution ÇÔ¼ö¸¦ ÀÛ¼ºÇØÁÖ¼¼¿ä.
+// https://programmers.co.kr/learn/courses/30/lessons/42840
+// í”„ë¡œê·¸ëž˜ë¨¸ìŠ¤ ëª¨ì˜ê³ ì‚¬ ë¬¸ì œ
+// ìˆ˜í¬ìžëŠ” ìˆ˜í•™ì„ í¬ê¸°í•œ ì‚¬ëžŒì˜ ì¤€ë§ìž…ë‹ˆë‹¤. 
+// ìˆ˜í¬ìž ì‚¼ì¸ë°©ì€ ëª¨ì˜ê³ ì‚¬ì— ìˆ˜í•™ ë¬¸ì œë¥¼ ì „ë¶€ ì°ìœ¼ë ¤ í•©ë‹ˆë‹¤. 
+// ìˆ˜í¬ìžëŠ” 1ë²ˆ ë¬¸ì œë¶€í„° ë§ˆì§€ë§‰ ë¬¸ì œê¹Œì§€ ë‹¤ìŒê³¼ ê°™ì´ ì°ìŠµë‹ˆë‹¤.
+// 1ë²ˆ ìˆ˜í¬ìžê°€ ì°ëŠ” ë°©ì‹: 1, 2, 3, 4, 5, 1, 2, 3, 4, 5, ...
+// 2ë²ˆ ìˆ˜í¬ìžê°€ ì°ëŠ” ë°©ì‹: 2, 1, 2, 3, 2, 4, 2, 5, 2, 1, 2, 3, 2, 4, 2, 5, ...
+// 3ë²ˆ ìˆ˜í¬ìžê°€ ì°ëŠ” ë°©ì‹: 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, 3, 3, 1, 1, 2, 2, 4, 4, 5, 5, ...
+// 1ë²ˆ ë¬¸ì œë¶€í„° ë§ˆì§€ë§‰ ë¬¸ì œê¹Œì§€ì˜ ì •ë‹µì´ ìˆœì„œëŒ€ë¡œ ë“¤ì€ ë°°ì—´ answersê°€ ì£¼ì–´ì¡Œì„ ë•Œ, 
+// ê°€ìž¥ ë§Žì€ ë¬¸ì œë¥¼ ë§žížŒ ì‚¬ëžŒì´ ëˆ„êµ¬ì¸ì§€ ë°°ì—´ì— ë‹´ì•„ return í•˜ë„ë¡ solution í•¨ìˆ˜ë¥¼ ìž‘ì„±í•´ì£¼ì„¸ìš”.
 
 #include <string>
 #include <vector>
@@ -15,27 +17,27 @@ using namespace std;
 
 vector<int> solution(vector<int> answers) {
     vector<int> answer;
-    int a[5] = {1, 2, 3, 4, 5};  // 1¹ø ¼öÆ÷ÀÚÀÇ Á¤´ä ÆÐÅÏ ÀúÀå 
-    int b[8] = {2, 1, 2, 3, 2, 4, 2, 5};  // 2¹ø ¼öÆ÷ÀÚÀÇ Á¤´ä ÆÐÅÏ ÀúÀå 
-    int c[10] = {3, 3, 1, 1, 2, 2, 4 ,4, 5, 5};  // 3¹ø ¼öÆ÷ÀÚÀÇ Á¤´ä ÆÐÅÏ ÀúÀå 
-    int iCount[3] = {};  // °¢°¢ ¼öÆ÷ÀÚÀÇ ¸ÂÀº Á¤´ä °¹¼ö¸¦ ÀúÀå 
+    int a[5] = {1, 2, 3, 4, 5};  // 1ë²ˆ ìˆ˜í¬ìžì˜ ì •ë‹µ íŒ¨í„´ ì €ìž¥ 
+    int b[8] = {2, 1, 2, 3, 2, 4, 2, 5};  // 2ë²ˆ ìˆ˜í¬ìžì˜ ì •ë‹µ íŒ¨í„´ ì €ìž¥ 
+    int c[10] = {3, 3, 1, 1, 2, 2, 4 ,4, 5, 5};  // 3ë²ˆ ìˆ˜í¬ìžì˜ ì •ë‹µ íŒ¨í„´ ì €ìž¥ 
+    int iCount[3] = {};  // ê°ê° ìˆ˜í¬ìžì˜ ë§žì€ ì •ë‹µ ê°¯ìˆ˜ë¥¼ ì €ìž¥ 
     
-    for(int i = 0; i < answers.size(); ++i){  // Á¤´äÀ» Å½»öÇÏ¸é¼­ 
-        if(a[i % 5] == answers[i])  // 1¹ø ¼öÆ÷ÀÚÀÇ Á¤´ä°ú ºñ±³ Ã¼Å© 
+    for(int i = 0; i < answers.size(); ++i){  // ì •ë‹µì„ íƒìƒ‰í•˜ë©´ì„œ 
+        if(a[i % 5] == answers[i])  // 1ë²ˆ ìˆ˜í¬ìžì˜ ì •ë‹µê³¼ ë¹„êµ ì²´í¬ 
         ++iCount[0];
-        if(b[i % 8] == answers[i])  // 2¹ø ¼öÆ÷ÀÚÀÇ Á¤´ä°ú ºñ±³ Ã¼Å©
+        if(b[i % 8] == answers[i])  // 2ë²ˆ ìˆ˜í¬ìžì˜ ì •ë‹µê³¼ ë¹„êµ ì²´í¬
         ++iCount[1];
-        if(c[i % 10] == answers[i])  // 3¹ø ¼öÆ÷ÀÚÀÇ Á¤´ä°ú ºñ±³ Ã¼Å©
+        if(c[i % 10] == answers[i])  // 3ë²ˆ ìˆ˜í¬ìžì˜ ì •ë‹µê³¼ ë¹„êµ ì²´í¬
         ++iCount[2];
     }
-    int iArray[3];  // °¢°¢ÀÇ ¸ÂÀº °¹¼ö¸¦ º¹»ç ÀúÀå 
+    int iArray[3];  // ê°ê°ì˜ ë§žì€ ê°¯ìˆ˜ë¥¼ ë³µì‚¬ ì €ìž¥ 
     for(int i = 0; i < 3; ++i){
         iArray[i] = iCount[i];
     }
-    sort(iArray, iArray + 3);  // ¸ÂÀº °¹¼ö¸¦ ³»¸²Â÷¼øÀ¸·Î Á¤·Ä 
-    for(int i = 0; i < 3; ++i){  // °¡Àå ¸¹ÀÌ ¸ÂÀº °¹¼ö¿Í ºñ±³ÇÏ¿© 
-        if(iCount[i] == iArray[2])  // °¡Àå ¸¹ÀÌ ¸ÂÀº °¹¼ö¿Í °°À¸¸é 
-            answer.push_back(i + 1);  // ¸î¹ø ¼öÆ÷ÀÚÀÎÁö ÀúÀå 
+    sort(iArray, iArray + 3);  // ë§žì€ ê°¯ìˆ˜ë¥¼ ë‚´ë¦¼ì°¨ìˆœìœ¼ë¡œ ì •ë ¬ 
+    for(int i = 0; i < 3; ++i){  // ê°€ìž¥ ë§Žì´ ë§žì€ ê°¯ìˆ˜ì™€ ë¹„êµí•˜ì—¬ 
+        if(iCount[i] == iArray[2])  // ê°€ìž¥ ë§Žì´ ë§žì€ ê°¯ìˆ˜ì™€ ê°™ìœ¼ë©´ 
+            answer.push_back(i + 1);  // ëª‡ë²ˆ ìˆ˜í¬ìžì¸ì§€ ì €ìž¥ 
     }
     return answer;
 }
