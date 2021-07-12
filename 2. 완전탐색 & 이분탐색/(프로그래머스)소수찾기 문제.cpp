@@ -36,11 +36,9 @@ void Dfs(int iNum, int place, int index){  // 매개변수 : 조합해서 입력
                 break;
             }
         }
-        if(!bCheck[i] && !flag){  // 내가 가진 숫자의 탐색한 인덱스가 아니고 이미 조합된 숫자도 아니면 
-            int a = iNum;  // 현재 조합된 숫자 저장 
+        if(!bCheck[i] && !flag){  // 내가 가진 숫자의 탐색한 인덱스가 아니고 이미 조합된 숫자도 아니면  
             Dfs(iNum * 10 + vec[i], place + 1, i);  // 새로 조합한 숫자, 조합된 숫자 갯수, 인덱스로 재귀함수 실행 
             bCheck[i] = false;  // 재귀함수가 종료되서 돌아오면 수행한 인덱스를 다시 탐색안한 것으로 체크 
-            iNum = a;  // 새로 조함된 수 이전으로 변경 
         }
     }
 }
