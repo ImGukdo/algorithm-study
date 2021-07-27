@@ -26,7 +26,7 @@ def solution(n, arr1, arr2):
             lst2.insert(0, arr2[i] % 2)
             arr1[i] //= 2  # 값을 2로 나눈 몫으로 변경
             arr2[i] //= 2
-        map1.append(lst1)  # 2진수로 바궜으면 배열에 넣어준다.
+        map1.append(lst1)  # 2진수로 바꿨으면 배열에 넣어준다.
         map2.append(lst2)
         
     for i in range(n) :
