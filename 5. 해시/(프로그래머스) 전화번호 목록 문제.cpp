@@ -1,13 +1,13 @@
 // https://programmers.co.kr/learn/courses/30/lessons/42577
-// ÇÁ·Î±×·¡¸Ó½º ÀüÈ­¹øÈ£ ¸ñ·Ï ¹®Á¦
-// ÀüÈ­¹øÈ£ºÎ¿¡ ÀûÈù ÀüÈ­¹øÈ£ Áß, ÇÑ ¹øÈ£°¡ ´Ù¸¥ ¹øÈ£ÀÇ Á¢µÎ¾îÀÎ °æ¿ì°¡ ÀÖ´ÂÁö È®ÀÎÇÏ·Á ÇÕ´Ï´Ù.
-// ÀüÈ­¹øÈ£°¡ ´ÙÀ½°ú °°À» °æ¿ì, ±¸Á¶´ë ÀüÈ­¹øÈ£´Â ¿µ¼®ÀÌÀÇ ÀüÈ­¹øÈ£ÀÇ Á¢µÎ»çÀÔ´Ï´Ù.
-// ±¸Á¶´ë : 119
-// ¹ÚÁØ¿µ : 97 674 223
-// Áö¿µ¼® : 11 9552 4421
-// ÀüÈ­¹øÈ£ºÎ¿¡ ÀûÈù ÀüÈ­¹øÈ£¸¦ ´ãÀº ¹è¿­ phone_book ÀÌ solution ÇÔ¼öÀÇ ¸Å°³º¯¼ö·Î ÁÖ¾îÁú ¶§,
-// ¾î¶² ¹øÈ£°¡ ´Ù¸¥ ¹øÈ£ÀÇ Á¢µÎ¾îÀÎ °æ¿ì°¡ ÀÖÀ¸¸é false¸¦ 
-// ±×·¸Áö ¾ÊÀ¸¸é true¸¦ return ÇÏµµ·Ï solution ÇÔ¼ö¸¦ ÀÛ¼ºÇØÁÖ¼¼¿ä.
+// í”„ë¡œê·¸ëž˜ë¨¸ìŠ¤ ì „í™”ë²ˆí˜¸ ëª©ë¡ ë¬¸ì œ
+// ì „í™”ë²ˆí˜¸ë¶€ì— ì ížŒ ì „í™”ë²ˆí˜¸ ì¤‘, í•œ ë²ˆí˜¸ê°€ ë‹¤ë¥¸ ë²ˆí˜¸ì˜ ì ‘ë‘ì–´ì¸ ê²½ìš°ê°€ ìžˆëŠ”ì§€ í™•ì¸í•˜ë ¤ í•©ë‹ˆë‹¤.
+// ì „í™”ë²ˆí˜¸ê°€ ë‹¤ìŒê³¼ ê°™ì„ ê²½ìš°, êµ¬ì¡°ëŒ€ ì „í™”ë²ˆí˜¸ëŠ” ì˜ì„ì´ì˜ ì „í™”ë²ˆí˜¸ì˜ ì ‘ë‘ì‚¬ìž…ë‹ˆë‹¤.
+// êµ¬ì¡°ëŒ€ : 119
+// ë°•ì¤€ì˜ : 97 674 223
+// ì§€ì˜ì„ : 11 9552 4421
+// ì „í™”ë²ˆí˜¸ë¶€ì— ì ížŒ ì „í™”ë²ˆí˜¸ë¥¼ ë‹´ì€ ë°°ì—´ phone_book ì´ solution í•¨ìˆ˜ì˜ ë§¤ê°œë³€ìˆ˜ë¡œ ì£¼ì–´ì§ˆ ë•Œ,
+// ì–´ë–¤ ë²ˆí˜¸ê°€ ë‹¤ë¥¸ ë²ˆí˜¸ì˜ ì ‘ë‘ì–´ì¸ ê²½ìš°ê°€ ìžˆìœ¼ë©´ falseë¥¼ 
+// ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ trueë¥¼ return í•˜ë„ë¡ solution í•¨ìˆ˜ë¥¼ ìž‘ì„±í•´ì£¼ì„¸ìš”.
 
 #include <string>
 #include <vector>
@@ -16,14 +16,14 @@
 
 using namespace std;
 
-map<long long, int> m;  // key°ª : ÇØ½Ã°ª, value : ÀÎµ¦½º 
-map<long long, int>::iterator iter;  // Á¢±ÙÀÚ »ý¼º 
+map<long long, int> m;  // keyê°’ : í•´ì‹œê°’, value : ì¸ë±ìŠ¤ 
+map<long long, int>::iterator iter;  // ì ‘ê·¼ìž ìƒì„± 
 
-bool compare(string a, string b){  // º¤ÅÍ¸¦ ±ÛÀÚ¼ö°¡ ÀûÀº°ÍºÎÅÍ ¿À¸§Â÷¼øÀ¸·Î Á¤·ÄÇÏ±â À§ÇÑ ºñ±³ÇÔ¼ö 
+bool compare(string a, string b){  // ë²¡í„°ë¥¼ ê¸€ìžìˆ˜ê°€ ì ì€ê²ƒë¶€í„° ì˜¤ë¦„ì°¨ìˆœìœ¼ë¡œ ì •ë ¬í•˜ê¸° ìœ„í•œ ë¹„êµí•¨ìˆ˜ 
     return a.length() < b.length();
 }
 long long iArray[51];  
-long long Pow(int iInput){  // ÇØ½Ã°è»êÀ» µµ¿ÍÁÙ °ÅµìÁ¦°ö ÇÔ¼ö 
+long long Pow(int iInput){  // í•´ì‹œê³„ì‚°ì„ ë„ì™€ì¤„ ê±°ë“­ì œê³± í•¨ìˆ˜ 
 	if(iInput == 0)
 	return 1;
 	
@@ -32,37 +32,37 @@ long long Pow(int iInput){  // ÇØ½Ã°è»êÀ» µµ¿ÍÁÙ °ÅµìÁ¦°ö ÇÔ¼ö
 	
 	return iArray[iInput] = 31 * Pow(iInput - 1) % 1234567891;   
 }
-long long Hash(string s, int size){  // ÇØ½Ã ÇÔ¼ö, ¹®ÀÚ¿­À» ÇØ½Ã°ªÀ¸·Î °è»ê 
+long long Hash(string s, int size){  // í•´ì‹œ í•¨ìˆ˜, ë¬¸ìžì—´ì„ í•´ì‹œê°’ìœ¼ë¡œ ê³„ì‚° 
     long long iResult = 0;
 	for(int i = 0; i < size; ++i){
-        iResult += (int)s[i] * Pow(i) % 1234567891;
-        iResult %= 1234567891;
-    }
-	return iResult;   
+            iResult += (int)s[i] * Pow(i) % 1234567891;
+            iResult %= 1234567891;
+    	}
+    return iResult;   
 }
 
 bool solution(vector<string> phone_book) {
     bool answer = true;
-    sort(phone_book.begin(), phone_book.end(), compare);  // ÆùºÏÀÇ °ªµéÀ» ±ÛÀÚ¼ö°¡ ÀûÀº¼øÀ¸·Î Á¤·Ä 
+    sort(phone_book.begin(), phone_book.end(), compare);  // í°ë¶ì˜ ê°’ë“¤ì„ ê¸€ìžìˆ˜ê°€ ì ì€ìˆœìœ¼ë¡œ ì •ë ¬ 
     
-    int x = Hash(phone_book[0], phone_book[0].length());  // Ã¹¹øÂ° ¹®ÀÚ¿­ÀÇ ÇØ½Ã°ª 
-    for(int i = 1; i < phone_book.size(); ++i){  // µÎ¹øÂ° ¹®ÀÚ¿­ºÎÅÍ Å½»öÇÏ¸é¼­ 
-        int y = Hash(phone_book[i], phone_book[0].length());  // Ã¹¹øÂ° ¹®ÀÚ¿­ ±æÀÌ¸¸Å­ÀÇ ÇØ½Ã°ª °è»ê 
-        if(x == y){  // ÇØ½Ã°ªÀÌ °°À¸¸é 
-            answer = false;  // Á¢µÎ»ç°¡ ÀÖÀ¸¹Ç·Î false 
-            break;  // Å»Ãâ 
+    int x = Hash(phone_book[0], phone_book[0].length());  // ì²«ë²ˆì§¸ ë¬¸ìžì—´ì˜ í•´ì‹œê°’ 
+    for(int i = 1; i < phone_book.size(); ++i){  // ë‘ë²ˆì§¸ ë¬¸ìžì—´ë¶€í„° íƒìƒ‰í•˜ë©´ì„œ 
+        int y = Hash(phone_book[i], phone_book[0].length());  // ì²«ë²ˆì§¸ ë¬¸ìžì—´ ê¸¸ì´ë§Œí¼ì˜ í•´ì‹œê°’ ê³„ì‚° 
+        if(x == y){  // í•´ì‹œê°’ì´ ê°™ìœ¼ë©´ 
+            answer = false;  // ì ‘ë‘ì‚¬ê°€ ìžˆìœ¼ë¯€ë¡œ false 
+            break;  // íƒˆì¶œ 
         }
-        else{  // ÇØ½Ã°ªÀÌ ´Ù¸£¸é 
+        else{  // í•´ì‹œê°’ì´ ë‹¤ë¥´ë©´ 
             iter = m.find(y);   
-            if(iter == m.end()){  // ÇöÀç ÇØ½Ã°ªÀ¸·ÎµÈ mapÀÇ key°¡ ¾øÀ¸¸é 
-                m.insert(make_pair(y, i));  // key : ÇØ½Ã°ª, value : ÀÎµ¦½º ¸¦ ³Ö¾îÁÜ 
+            if(iter == m.end()){  // í˜„ìž¬ í•´ì‹œê°’ìœ¼ë¡œëœ mapì˜ keyê°€ ì—†ìœ¼ë©´ 
+                m.insert(make_pair(y, i));  // key : í•´ì‹œê°’, value : ì¸ë±ìŠ¤ ë¥¼ ë„£ì–´ì¤Œ 
             }
-            else{  // ÇöÀç ÇØ½Ã°ªÀ¸·ÎµÈ mapÀÇ key°¡ ÀÖÀ¸¸é 
-                long long a = Hash(phone_book[m[y]], phone_book[m[y]].length());  // key°ªÀÇ value¸¦ ÀÎµ¦½º·Î ÇØ¼­ ¹®ÀÚ¿­ ±æÀÌ¸¸Å­ ÇØ½Ã°ªÀ» ±¸ÇÔ 
-                long long b = Hash(phone_book[i], phone_book[m[y]].length());  // µ¿ÀÏÇÑ ¹®ÀÚ¿­ ±æÀÌ·Î ÇØ½Ã°ªÀ» ±¸ÇÔ 
-                if(a == b){  // ÇØ½Ã°ªÀÌ °°À¸¸é 
-                    answer = false;  // Á¢µÎ»ç°¡ ÀÖÀ¸¹Ç·Î false 
-                    break;  // Å»Ãâ 
+            else{  // í˜„ìž¬ í•´ì‹œê°’ìœ¼ë¡œëœ mapì˜ keyê°€ ìžˆìœ¼ë©´ 
+                long long a = Hash(phone_book[m[y]], phone_book[m[y]].length());  // keyê°’ì˜ valueë¥¼ ì¸ë±ìŠ¤ë¡œ í•´ì„œ ë¬¸ìžì—´ ê¸¸ì´ë§Œí¼ í•´ì‹œê°’ì„ êµ¬í•¨ 
+                long long b = Hash(phone_book[i], phone_book[m[y]].length());  // ë™ì¼í•œ ë¬¸ìžì—´ ê¸¸ì´ë¡œ í•´ì‹œê°’ì„ êµ¬í•¨ 
+                if(a == b){  // í•´ì‹œê°’ì´ ê°™ìœ¼ë©´ 
+                    answer = false;  // ì ‘ë‘ì‚¬ê°€ ìžˆìœ¼ë¯€ë¡œ false 
+                    break;  // íƒˆì¶œ 
                 }
             }
         }
